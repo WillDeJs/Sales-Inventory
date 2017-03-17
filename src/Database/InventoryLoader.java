@@ -63,12 +63,11 @@ public class InventoryLoader {
                     if (values[i].equals(""))
                         values[i] = "-";
                 }
-                InventoryLoader.this.loadEntry(values[0], values[1], Integer.parseInt(values[2].trim()),
+                loadEntry(values[0], values[1], Integer.parseInt(values[2].trim()),
                         Double.parseDouble(values[3].trim()), values[4]);
-                
-                // close csv reader
-                reader.close();
             }
+             // close csv reader
+                reader.close();
             return true;
         } catch (Exception ex) {
             // Somethign went wrong
