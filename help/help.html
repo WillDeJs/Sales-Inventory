@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>Sales & Inventory Tutorial </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <header>
+            <nav id="nav-bar" > 
+            <ul id="nav-bar-ul" >
+                <h2>Navigation </h2>
+                <li><a href = "#login">Login In</a></li>
+                <li><a href = "#logout">Log out</a></li>
+                <li><a href = "#manage-users">Managing Users</a></li>
+                <li><a href = "#inventory">Inventory</a></li>
+                <li><a href = "#sales">Sales</a></li>
+                <li><a href = "#sales-record">Sales Record </a></li>
+                 <li><a href = "#properties">Business Properties</a></li>
+            </ul>
+        </nav>
+        </header>
+        <div id="container">
+            <h1>Tutorial</h1>
+            <div id="login">
+                <h2>Log In</h2>
+                <p>
+                    In order to access the Sales & Inventory program a user must first log in.
+                    By default the program contains a single user (more can be added later) called "admin".
+                    The password for <i><b>admin</b></i> is <i><b>password</b></i>. It is advised to change the password upon first use.
+                    Loging into the system is simple. Just enter the require user and password and press <i><b>Log in</b></i>.
+                </p>
+                <img src="images/login.png" alt="Login image">
+            </div>
+            <div id="logout">
+                <h2>Log out</h2>
+                <p>
+                    Loging out is just as simple as loging in. The user must first go to File menu on the menubar. Then click logout.
+                </p>
+                <img src="images/logout.png" alt="logout">
+            </div>
+            <div id="Manage-users">
+                <h2>Managing Users</h2>
+                <p>
+                    The system's administrator can add, delete and modify existing users. This can be done by clicking the <b>Manage Users</b> menu item from the <b>File</b> menu.
+                    Note that this option is only available for the administrator. Regular users will not have access to this options.
+                </p>
+                <img src="images/manage-users1.png" alt="manage-users1">
+                <p>
+                    Adding, deleting and change the passwords of users is quite straight forward.
+                    <li> In order to add a user click <b>Add</b> button and fill out the username and password when prompted. </li>
+                    <li> In order to delete a user first select the user and then click <b>Delete</b>. </li>
+                    <li> In order to change the password of an existing user, select the user and click <b>Change Password</b>. Enter and verify the new password and click <b>Accept</b></li>
+                </p>
+                <p> Changing the password for the currently logged user, can be achieve from the <b>File</b> menu and clicking the option <b>Change Password</b>. These option is available for any logged user.</p>
+            </div>
+            <div id="inventory">
+                <h2>Inventory</h2>
+                <p>
+                    The system allows the creating and management of product inventory. The inventory is meant to containa detailed list of all the products and services provided.
+                    By default the inventory comes empty. The administrator will have to create a detailed inventory and uploaded to the database.
+                    The inventory can be accessed by clicking on the <b>Inventory</b> tab in the main window. It can be navigated through using the keyboard arrows keys or mouse. The user can search for an specific product by typing the product name in the search text field and clicking <b>Search</b>.
+                </p>
+                <img src="images/inventory1.png" alt="inventory">
+                <h2>Importing Inventory</h2>
+                <p>
+                   Administrator can import a CSV file containing the inventory for the system. This file can be added to the database by going to <b>File</b> and selecting <b>Import Inventory</b>.<b>It is important to note</b> that importing an inventory overrides all existing inventory data and replaces it with the data contained in the CSV File. 
+                </p>
+                <img src="images/inventory2.png" alt="inventory">
+                <p>
+                    It is important that note that the format for CSV Inventory file must follow the following headers:
+                </p>
+                <img src="images/inventory3.png" alt="">
+                   <p>
+                   Administrator can also export an existing inventory CSV file containing the inventory for the system. This file can be added to the database by going to <b>File</b> and selecting <b>Export Inventory</b>. This comes handy when preparing to upload new inventory files. User can save current inventory, add additioanl information and then reupload changes to database by importing the inventory.
+                </p>
+            </div>
+            <div id="sales">
+                <h2>Sales</h2>
+                <p>
+                    Users can start new transactions/sales from the <b>Sales</b> tab. The sales tab relies in the inventory tab. The user will only be allow to sell services and products that are listed in the inventory. This is why a solid and detailed inventory is necessary for sales management. To fullfil a transaction the user needs to enter the Item ID (from ID column in Inventory) and the quantity of products with corresponding ID. To add the current transaction to the list/receipt, the user then clicks <b>Add</b>. After all serivices/products are added successfully, the user needs to enter the customer's name and <b>Accept</b> the transaction.
+                </p>
+                <img src="images/sales1.png" alt="inventory">
+            </div>
+            <div id="sales-record">
+                <h2>Sales Record</h2>
+                <p>
+                    The sales record tab contains all previous transactions. These transactions can be exported, by goign to <b>File</b> menu and clicking <b>Export Sales Record</b>.
+
+                </p>
+                <img src="images/salesrecord1.png" alt="inventory">
+                <p>
+                   In order to delete or print a transaction, the user needs to right click on the transaction line from the record table, and select the desired option. Deleting transactions is only allowed to the <b>Administrator</b>
+
+                </p>
+                <img src="images/salesrecord2.png" alt="inventory">
+            </div>
+            <div id="properties">
+                <h2>Business Properties</h2>
+                <p>
+                    Business properties are set in $(program_root)/custom/properties.txt </i>. This file contains the company name, contact and address. It is used in order to be displayed in the application's windows and receipts.
+                    The properties.txt file looks something like below:
+                    <pre>
+                        BUSINESS:Sample Company
+                        ADDRESS:742 Evergreen Terrace, Springfield.
+                        PHONE:555-555-5555
+                    </pre>
+                </p>
+            </div>
+
+        </div>
+    </body>
+</html>
