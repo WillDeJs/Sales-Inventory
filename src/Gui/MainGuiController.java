@@ -7,9 +7,7 @@ import Database.TransactionInfoLoader;
 import Database.InventoryObject;
 import Database.InventoryLoader;
 import Database.TransactionInfoObject;
-import Database.UserInfo;
 import Database.UserInfoObject;
-import Utilities.PasswordHash;
 import Utilities.RuntimeInfo;
 import java.awt.Desktop;
 import javafx.application.Platform;
@@ -31,14 +29,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-//import javafx.scene.layout.HBox;
-//import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-//import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.*;
@@ -180,114 +175,9 @@ public class MainGuiController implements Initializable {
         } catch (Exception ex) {
             Trace.getTrace().log(getClass(), Trace.Levels.ERROR, ex);
         }
-
-//        // create window, to stay on tup of application
-//        Stage dialog = new Stage();
-//        dialog.initModality(Modality.APPLICATION_MODAL);
-//
-//        // create controls
-//        TextField user = new TextField();
-//        user.setPromptText("Username");
-//        Label label = new Label( "Verify User priviledges");
-//        PasswordField pass = new PasswordField();
-//        pass.setPromptText("Password");
-//
-//        // if enter is pressed validate user
-//        // if escape is pressed close window
-//        pass.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                if (event.getCode().equals(KeyCode.ENTER))
-//                    validateUserDelete(dialog, recordSalesTable, user, pass);
-//                if (event.getCode().equals(KeyCode.ESCAPE))
-//                    dialog.hide();
-//            }
-//        });
-//        
-//        user.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                if (event.getCode().equals(KeyCode.ENTER))
-//                    validateUserDelete(dialog, recordSalesTable, user, pass);
-//                if (event.getCode().equals(KeyCode.ESCAPE))
-//                    dialog.hide();
-//            }
-//        });
-//        Button accept  = new Button("Accept");
-//        accept.setDefaultButton(true);
-//        Button cancel = new Button("Cancel");
-//
-//        accept.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                validateUserDelete(dialog, recordSalesTable, user, pass);
-//            }
-//        });
-//        cancel.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                dialog.hide();
-//            }
-//        });
-//        
-//        // set and view stage
-//        HBox hBox = new HBox(20, accept, cancel);
-//        VBox vbox = new VBox();
-//        vbox.setMargin( hBox, new Insets(10, 30, 10, 30));
-//        vbox.setMargin( label, new Insets(10, 10, 10, 10));
-//        vbox.setMargin( user, new Insets(10, 10, 10, 10));
-//        vbox.setMargin( pass, new Insets(10, 10, 10, 10));
-//        
-//        vbox.getChildren().addAll(label, user, pass, hBox);
-//        dialog.setScene(new Scene(vbox, 300, 200));
-//        dialog.setResizable(false);
-//        dialog.setTitle("Verify User");
-//        dialog.show();
     }
 
-    /* Validate user deletiong of sales table*/
-//    private void validateUserDelete(Stage stage, TableView recordSalesTable, TextField user, TextField pass ){
-//        try {
-//            TransactionInfoLoader cm = new TransactionInfoLoader();
-//            UserInfo userInfo = new UserInfo();
-//            
-//            //If user is not administrator do not allow  action
-//            if (!userInfo.isAdmin(user.getText())) {
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION,
-//                        "User does not have permission to execute action.");
-//                alert.setTitle("Insufficient Permissions");
-//                alert.setHeaderText("Insufficient Permissions");
-//                alert.showAndWait();
-//                return;
-//            }
-//            
-//            if (userInfo.isValidUser(user.getText(), pass.getText())) {
-//                TransactionInfoObject  obj = (TransactionInfoObject) recordSalesTable.getSelectionModel().getSelectedItem();
-//               if (obj != null) {
-//                   cm.deleteEntry(obj.getId());
-//                   recordSalesTable.getItems().remove(recordSalesTable.getSelectionModel().getSelectedIndex());
-//                   updateRecordTable(); // update table with changes
-//
-//                   // log change in record
-//                   Trace.getTrace().log(getClass(), Trace.Levels.INFO, user.getText() 
-//                           + " deleted entry from sales" 
-//                           + obj.getCustomer() + " " 
-//                           + obj.getDate() + " " + obj.getTransaction());
-//                   stage.close();
-//               }
-//            }
-//            else {
-//                throw new Exception("Invalid user");
-//            }
-//        } catch (Exception ex) {
-//            Trace.getTrace().log(getClass(), Trace.Levels.ERROR, ex);
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "User and password do not match");
-//            alert.setTitle("Error Loging In");
-//            alert.setHeaderText("Check user and password.");
-//            alert.showAndWait();
-//        }
-//
-//    }
+
     /* Helper to update record table*/
     private void updateRecordTable() {
         try {

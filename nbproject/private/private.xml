@@ -12,15 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Gui/PasswordChangeGuiController.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/nbproject/jfx-impl.xml</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Database/UserInfoObject.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Utilities/RuntimeInfo.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Gui/UserManagementController.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Database/UserInfo.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Gui/LoginController.java</file>
-            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory%20-%20Copy/src/Gui/MainGuiController.java</file>
+            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory/src/Gui/MainGuiController.java</file>
+            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory/src/Database/InventoryLoader.java</file>
+            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory/src/Gui/LoginController.java</file>
+            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory/src/Gui/UserManagementController.java</file>
+            <file>file:/C:/Users/wilra/Dropbox/Sales%20&amp;%20Inventory/src/Database/InventoryObject.java</file>
         </group>
     </open-files>
 </project-private>

@@ -20,7 +20,7 @@ public class BusinessProperties {
         properties = new Properties();
         String ret = null;
         try {
-            properties.load(new FileInputStream("custom/properties.txt"));
+            properties.load(new FileInputStream("custom/business_properties.properties"));
             ret = properties.getProperty(property);
         } catch(Exception ex) {
             Trace.getTrace().log(BusinessProperties.class, Trace.Levels.ERROR, ex);

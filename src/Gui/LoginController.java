@@ -138,12 +138,8 @@ public class LoginController implements Initializable {
             MainGuiController mg = new MainGuiController();
             mg.showMainGui();
 
-            
             Trace.getTrace().log(this.getClass(), Trace.Levels.INFO,
                     userField.getText() + " logged in successfully");
-            
-           
-
         }
         else {
             new Alert(Alert.AlertType.ERROR, "Could not log in",

@@ -1,5 +1,6 @@
 package Database;
 import Utilities.Trace;
+import Utilities.BusinessProperties;
 import java.io.File;
 import java.sql.*;
 
@@ -33,13 +34,17 @@ public class SqliteConnection {
     public synchronized Connection getConnection2(){
         return con;
     }
-    
+
+    /**
+     * Retrieves a connection to the database
+     * @return
+     */
     public static synchronized Connection getConnection(){
         Connection con = null;
           try{
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:" + "bin"
-                    + File.separator + "SalesAndInventory.sqlite");
+            String dbURL = BusinessProperties.getProperty("DB_URL");
+            con = DriverManager.getConnection("jdbc:sqlite:" + dbURL);
 
         }catch (Exception e) {
                Trace.getTrace().log(SqliteConnection.class, 
