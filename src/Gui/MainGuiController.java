@@ -804,7 +804,7 @@ public class MainGuiController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item ID " 
                         + id + " does not exist.");
                 alert.setHeaderText("Item is not in inventoryo");
-                alert.setTitle("Articulo no en Inventario");
+                alert.setTitle("No inventory item");
                 alert.showAndWait();
             }
         } catch (Exception ex) {
@@ -870,15 +870,28 @@ public class MainGuiController implements Initializable {
                 inObj = iv.getEntry(salesObj.getInventoryId());
                 rest = inObj.getStock();
                 
-                // reduce their numbers according to purchase quantity
-                inObj.setStock(rest - salesObj.getQuantity());
+                // Reduce their numbers according to purchase quantity
+                // Only if the number has not changed from the time it was added
+                // To cart
+                if (rest >= salesObj.getQuantity()) {
+                    inObj.setStock(rest - salesObj.getQuantity());
                 
-                // update inventory in database
-                iv.updateEntry(inObj);
+                    // update inventory in database
+                    iv.updateEntry(inObj);
                 
-                // update inventory table
-                buffer.append(String.format("%d\t%20s\t%-2s\n", salesObj.getQuantity(), salesObj.getProduct(),
+                    // update inventory table
+                    buffer.append(String.format("%d\t%20s\t%-2s\n", salesObj.getQuantity(), salesObj.getProduct(),
                         salesObj.getUnitPrice() * ((SalesEntryObject) obj).getQuantity()));
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                                    "Not enough " + salesObj.getProduct() + " in Inventory.\n"
+                    + "Please modify your transaction.");
+                    alert.setTitle("Insufficient Inventory");
+                    alert.setHeaderText("Insufficient Inventory");
+                    alert.showAndWait();
+                    return;
+                }
             }
 
             // prepare sales transaction to be logged in database

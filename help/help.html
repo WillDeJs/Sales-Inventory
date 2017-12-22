@@ -6,7 +6,7 @@
 
     <body>
         <header>
-            <nav id="nav-bar" > 
+            <nav id="nav-bar" >
             <ul id="nav-bar-ul" >
                 <h2>Navigation </h2>
                 <li><a href = "#login">Login In</a></li>
@@ -63,7 +63,7 @@
                 <img src="images/inventory1.png" alt="inventory">
                 <h2>Importing Inventory</h2>
                 <p>
-                   Administrator can import a CSV file containing the inventory for the system. This file can be added to the database by going to <b>File</b> and selecting <b>Import Inventory</b>.<b>It is important to note</b> that importing an inventory overrides all existing inventory data and replaces it with the data contained in the CSV File. 
+                   Administrator can import a CSV file containing the inventory for the system. This file can be added to the database by going to <b>File</b> and selecting <b>Import Inventory</b>.<b>It is important to note</b> that importing an inventory overrides all existing inventory data and replaces it with the data contained in the CSV File.
                 </p>
                 <img src="images/inventory2.png" alt="inventory">
                 <p>
@@ -98,11 +98,12 @@
                 <h2>Business Properties</h2>
                 <p>
                     Business properties are set in $(program_root)/custom/properties.txt </i>. This file contains the company name, contact and address. It is used in order to be displayed in the application's windows and receipts.
-                    The properties.txt file looks something like below:
+                    The busines_properties.properties. file looks something like below:
                     <pre>
                         BUSINESS:Sample Company
                         ADDRESS:742 Evergreen Terrace, Springfield.
                         PHONE:555-555-5555
+                        DB_URL:[DB LOCATION]
                     </pre>
                 </p>
             </div>
