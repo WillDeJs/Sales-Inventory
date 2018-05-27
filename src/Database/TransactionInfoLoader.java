@@ -13,11 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by WillDeJs on 1/9/2017.
  */
-public class TransactionInfoLoader {
-
-    // connection to database and file objects
-    private Connection connection;
-    private SqliteConnection sqliteConn;
+public class TransactionInfoLoader extends DatabaseLoader {
 
     /**
      * Default constructor to build an CustomerInfoLoder Object
@@ -25,8 +21,7 @@ public class TransactionInfoLoader {
      * @throws IOException
      */
     public TransactionInfoLoader() throws IOException {
-        sqliteConn = new SqliteConnection();
-        connection = SqliteConnection.getConnection();
+        super();
     }
 
     /**
@@ -94,7 +89,7 @@ public class TransactionInfoLoader {
      
       String query2 ="INSERT INTO CUSTOMER_INFO (CUSTOMER, TRANS, BALANCE, DATE) VALUES(?, ?, ?, ?)";
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query2);
+            PreparedStatement preparedStatement = getDBConnection().prepareStatement(query2);
 
             //setup arguments
             preparedStatement.setString(1, customer);
@@ -129,7 +124,7 @@ public class TransactionInfoLoader {
         String query = "UPDATE CUSTOMER_INFO  SET CUSTOMER=?, TRANS=?,"
                 + " BALANCE=?, DATE=? WHERE ID=?";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        PreparedStatement preparedStatement = getDBConnection().prepareStatement(query);
 
         //setup arguments
         preparedStatement.setString(1, customer);
@@ -157,7 +152,7 @@ public class TransactionInfoLoader {
          String query = "SELECT * FROM CUSTOMER_INFO";
         ObservableList customerInfoList;
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = getDBConnection().createStatement();
             ResultSet result = statement.executeQuery(query);
             customerInfoList = FXCollections.observableArrayList();
 
@@ -219,7 +214,7 @@ public class TransactionInfoLoader {
     /* Helper  to delete table contents. */
     private boolean deleteCustomerInfoTable() throws SQLException {
         String query = "DROP TABLE IF EXISTS 'CUSTOMER_INFO';";
-        Statement statement = connection.createStatement();
+        Statement statement = getDBConnection().createStatement();
         boolean result = statement.execute(query);
         statement.close();
         return result;
@@ -234,7 +229,7 @@ public class TransactionInfoLoader {
                 " 'BALANCE' TEXT, " +
                 " 'DATE' TEXT " +
                 ");";
-        Statement statement = connection.createStatement();
+        Statement statement = getDBConnection().createStatement();
         boolean result = statement.execute(query);
         statement.close();
         return result;
@@ -251,7 +246,7 @@ public class TransactionInfoLoader {
         ArrayList<TransactionInfoObject> list = new ArrayList<>();
         try {
 
-            Statement statement = connection.createStatement();
+            Statement statement = getDBConnection().createStatement();
             ResultSet result = statement.executeQuery(query);
 
             while (result.next()) {
@@ -282,7 +277,7 @@ public class TransactionInfoLoader {
         // query to execute
         String query = "DELETE FROM CUSTOMER_INFO WHERE ID=?;";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        PreparedStatement preparedStatement = getDBConnection().prepareStatement(query);
 
         //setup arguments
         preparedStatement.setInt(1, id);
@@ -306,13 +301,5 @@ public class TransactionInfoLoader {
                 out.writeNext(obj.getObjetAsStringArray());
             }
         }
-    }
-
-    /* Clean up*/
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        connection.commit();
-        connection.close();
     }
 }

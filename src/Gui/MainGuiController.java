@@ -362,23 +362,17 @@ public class MainGuiController implements Initializable {
      * @return EventHandler for the commit
      */
     private EventHandler<TableColumn.CellEditEvent> columnCommitEventHandler(InventoryUpdate update) {
-        return new EventHandler<TableColumn.CellEditEvent>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent event) {
-                updateTableRow(event, update);
-            }
+        return (TableColumn.CellEditEvent event) -> {
+            updateTableRow(event, update);
         };
     }
 
     /* Event filter for searching inventory. When enter is pressed, query is 
         executed*/
     private EventHandler<KeyEvent> getInventoryQueryEventFilter() {
-        return new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ENTER)) {
-                    queryInventory(new ActionEvent());
-                }
+        return (KeyEvent event) -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                queryInventory(new ActionEvent());
             }
         };
     }
@@ -497,7 +491,7 @@ public class MainGuiController implements Initializable {
      * application
      */
     public void passwordChangePrompt(ActionEvent event) throws Exception {
-        PasswordChangeGuiController pd = new PasswordChangeGuiController();
+        PasswordChangeGuiController pd = new PasswordChangeGuiController(RuntimeInfo.getLoggedUser().getUserName());
         pd.showPasswordChangeDialog();
     }
 

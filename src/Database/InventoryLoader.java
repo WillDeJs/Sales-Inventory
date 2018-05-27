@@ -15,11 +15,8 @@ import java.util.ArrayList;
  * Allows the retrieving/writing inventory objects from/to database
  * Created by WillDeJs on 1/6/2017.
  */
-public class InventoryLoader {
+public class InventoryLoader  extends DatabaseLoader {
     
-    // connection to database 
-    private Connection connection;
-    private SqliteConnection sqliteConn;
    
     /**
      * Default constructor to build an InventoryLoader Object
@@ -27,8 +24,7 @@ public class InventoryLoader {
      * @throws IOException
      */
     public InventoryLoader() throws IOException {
-        sqliteConn = new SqliteConnection();
-        connection = SqliteConnection.getConnection();
+        super();
     }
 
 
@@ -103,7 +99,7 @@ public class InventoryLoader {
                 + " COMMENT)" + " values ( ?, ?, ?, ?, ?);";
 
  
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = getDBConnection().prepareStatement(query);
 
             // setup arguments
             preparedStatement.setString(1, product);
@@ -139,7 +135,7 @@ public class InventoryLoader {
         try {
              
             // Prepared statement to query database
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = getDBConnection().prepareStatement(query);
 
             //setup arguments
             preparedStatement.setString(1, product);
@@ -169,7 +165,7 @@ public class InventoryLoader {
         ObservableList<InventoryObject> inventoryList = FXCollections.observableArrayList();
         String query = "SELECT * FROM INVENTORY;";
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = getDBConnection().createStatement();
             ResultSet result = statement.executeQuery(query);
             
             while (result.next()) {
@@ -231,7 +227,7 @@ public class InventoryLoader {
     /* Helper  to delete table contents*/
     private synchronized boolean deleteInventoryTable() throws SQLException {
         String query = "DROP TABLE IF EXISTS 'INVENTORY';";
-        Statement statement = connection.createStatement();
+        Statement statement = getDBConnection().createStatement();
         boolean result = statement.execute(query);
         statement.close();
         return result;
@@ -247,7 +243,7 @@ public class InventoryLoader {
                 " 'PRICE' REAL, " +
                 " 'COMMENT' TEXT " +
                 ");";
-        Statement statement = connection.createStatement();
+        Statement statement = getDBConnection().createStatement();
         boolean result = statement.execute(query);
         statement.close();
         return result;
@@ -264,7 +260,7 @@ public class InventoryLoader {
         ArrayList<InventoryObject> list = new ArrayList<>();
         try {
 
-            Statement statement = connection.createStatement();
+            Statement statement = getDBConnection().createStatement();
             ResultSet result = statement.executeQuery(query);
 
             while (result.next()) {
@@ -298,7 +294,7 @@ public class InventoryLoader {
         String query = "DELETE FROM INVENTORY WHERE ID=?;";
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = getDBConnection().prepareStatement(query);
 
             //setup arguments
             preparedStatement.setInt(1, id);
@@ -328,7 +324,7 @@ public class InventoryLoader {
         try {
             String query = "SELECT * FROM INVENTORY WHERE ID=" + id +";";
 
-            Statement preparedStatement = connection.createStatement();
+            Statement preparedStatement = getDBConnection().createStatement();
 
             // execute query
             ResultSet result = preparedStatement.executeQuery(query);
@@ -361,12 +357,5 @@ public class InventoryLoader {
                 out.writeNext(obj.getObjectAsStringArray());
             }
         }
-    }
-
-    /* Clean up*/
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        connection.close();
     }
 }

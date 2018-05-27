@@ -1,7 +1,7 @@
 package Gui;
 
 import Database.SqliteConnection;
-import Database.UserInfo;
+import Database.UserManager;
 import Utilities.Trace;
 import Utilities.BusinessProperties;
 import Utilities.PasswordHash;
@@ -116,7 +116,6 @@ public class LoginController implements Initializable {
                     "Could not load login icons", ex);
         }
         stage.show();
-        String a = new String();
     }
 
     /**
@@ -125,12 +124,12 @@ public class LoginController implements Initializable {
      * @throws IOException
      */
     public void login(ActionEvent e) throws IOException {
-       UserInfo userInfo = new UserInfo();
+
        String user = userField.getText();
        String password = PasswordHash.getHashedPassword(passwordField.getText());
-        if (userInfo.isValidUser(user, password)) {
+        if (UserManager.getManager().isValidUser(user, password)) {
              // set user information in runtime
-            RuntimeInfo.setLoggedUser(userInfo.getUser(userField.getText()));
+            RuntimeInfo.setLoggedUser(UserManager.getManager().getUser(userField.getText()));
             //close current login window
             userField.getScene().getWindow().hide();
             

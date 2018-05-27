@@ -5,7 +5,7 @@
  */
 package Utilities;
 
-import Database.UserInfo;
+import Database.UserManager;
 import Database.UserInfoObject;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -41,9 +41,9 @@ public class RuntimeInfo {
      * @param user  UserInfoObject containing user information
      */
     public static void setLoggedUser(UserInfoObject user) {
-        UserInfo userInfo = null;
+        UserManager userInfo = null;
         try {
-            userInfo = new UserInfo();
+            userInfo = UserManager.getManager();
             out = new ObjectOutputStream(new FileOutputStream("bin" + File.separator  + "runtime" + File.separator + "runcred.ser"));
             out.writeObject(user);
         } catch(Exception ex) {
@@ -56,7 +56,7 @@ public class RuntimeInfo {
      * @param username username of the user
      */
     public static void setLoggedUser(String username) {
-        UserInfo userInfo = new UserInfo();
+        UserManager userInfo = UserManager.getManager();
         setLoggedUser(userInfo.getUser(username));
     }
     

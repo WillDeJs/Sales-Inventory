@@ -6,10 +6,6 @@ import Database.InventoryLoader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-
-
-import java.net.Inet4Address;
 
 /**
  * Custom cell factory to include delete button on each cell
